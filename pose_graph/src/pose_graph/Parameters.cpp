@@ -89,6 +89,9 @@ void Parameters::loadParameters(const ros::NodeHandle& nh) {
   image_height_ = static_cast<int>(fsSettings["height"]);
   image_width_ = static_cast<int>(fsSettings["width"]);
 
+  std::cout << "Original Image width: " << image_width_ << "\n";
+  std::cout << "Original Image Height: " << image_height_ << "\n";
+
   cv::FileNode focal_length_node = fsSettings["focal_length"];
   cv::FileNode principal_point_node = fsSettings["principal_point"];
 
@@ -96,7 +99,7 @@ void Parameters::loadParameters(const ros::NodeHandle& nh) {
   K.at<double>(0, 0) = static_cast<double>(focal_length_node[0]);
   K.at<double>(1, 1) = static_cast<double>(focal_length_node[1]);
   K.at<double>(0, 2) = static_cast<double>(principal_point_node[0]);
-  K.at<double>(1, 2) = static_cast<double>(principal_point_node[2]);
+  K.at<double>(1, 2) = static_cast<double>(principal_point_node[1]);
 
   if (resize_factor_ != 1.0) {
     K = K * resize_factor_;
@@ -120,6 +123,7 @@ void Parameters::loadParameters(const ros::NodeHandle& nh) {
 
   cv::Size image_size(image_width_, image_height_);
 
+  ROS_INFO_STREAM("Resized Image: " << image_width_ << "x" << image_height_);
   ROS_INFO_STREAM("distortion_coefficients: " << distortion_coeffs_);
   ROS_INFO_STREAM("camera_matrix: " << K);
 

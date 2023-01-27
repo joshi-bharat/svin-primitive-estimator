@@ -20,7 +20,7 @@
     </group>
 
     <!--Run pose_graph node-->
-    <node name="pose_graph_node" pkg="pose_graph" type="pose_graph_node">
+    <node name="pose_graph_node" pkg="pose_graph" type="pose_graph_node" output="screen">
         <param name="config_file" type="string" value="$(arg config_path)" />
         <remap from="/cam0/image_raw" to="/cam_fl/image_raw" />
     </node>
