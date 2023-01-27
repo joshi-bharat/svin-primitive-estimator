@@ -552,8 +552,8 @@ void PoseGraphOptimization::run() {
     }
 
     switch_file.close();
-    std::chrono::milliseconds dura(5);
-    std::this_thread::sleep_for(dura);
+    // std::chrono::milliseconds dura(5);
+    // std::this_thread::sleep_for(dura);
   }
 }
 
